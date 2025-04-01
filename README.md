@@ -4,11 +4,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of Rsurveytools is to ...
+The purpose of Rsurveytools is to add a crosstab function that works for multiple survey and demographic questions at the same time. 
 
 ## Installation
 
-You can install the development version of Rsurveytools like so:
+You can install the development version of Rsurveytools using the remotes package. 
 
 ``` r
 remotes::install_github("hunterjohnson11/Rsurveytools")

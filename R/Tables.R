@@ -1,8 +1,8 @@
 #' @import srvyr
 #' @import gtsummary
-#' @import gt
 #' @importFrom dplyr everything
 #' @importFrom purrr map
+#' @importFrom gt rm_footnotes
 NULL
 
 #' Create cross-tabulation summary tables
@@ -38,13 +38,8 @@ crosstab <- function(data, main_var, sub_vars,
                      digits_2 = 0,
                      keep_footnotes = FALSE) {
 
-  # Define subtable function inside crosstab
-  subtable <- function(data, main, sub,
-                       stat_option = stat_option,
-                       custom_stat_cat = custom_stat_cat,
-                       custom_stat_cont = custom_stat_cont,
-                       digits = digits,
-                       digits_2 = digits_2) {
+  # Define subtable function inside crosstab but without default parameters
+  subtable <- function(data, main, sub, stat_option, custom_stat_cat, custom_stat_cont, digits, digits_2) {
     if (stat_option == "single") {
       statistic_cat <- "{p}%"
       statistic_cont <- "{mean}"
@@ -94,7 +89,17 @@ crosstab <- function(data, main_var, sub_vars,
   message("Creating subtables")
   sub_tables <- purrr::map(sub_vars, ~{
     message("Processing subtable for ", .x)
-    subtable(data = data, main = main_var, sub = .x)
+    # Pass all parameters explicitly
+    subtable(
+      data = data,
+      main = main_var,
+      sub = .x,
+      stat_option = stat_option,
+      custom_stat_cat = custom_stat_cat,
+      custom_stat_cont = custom_stat_cont,
+      digits = digits,
+      digits_2 = digits_2
+    )
   })
   message("Merging tables")
   # MERGE

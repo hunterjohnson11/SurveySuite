@@ -11,7 +11,7 @@ The goal of Rsurveytools is to ...
 You can install the development version of Rsurveytools like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+remotes::install_github("hunterjohnson11/Rsurveytools")
 ```
 
 ## Example

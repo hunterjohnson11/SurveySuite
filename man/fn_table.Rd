@@ -2,7 +2,7 @@
 % Please edit documentation in R/Tables.R
 \name{fn_table}
 \alias{fn_table}
-\title{Create a Summary Table with Multiple Subtables}
+\title{Create summary tables with subtables}
 \usage{
 fn_table(
   data,
@@ -17,28 +17,36 @@ fn_table(
 )
 }
 \arguments{
-\item{data}{A survey dataset.}
+\item{data}{A data frame or survey design object}
 
-\item{main_var}{The main variable for summarization.}
+\item{main_var}{The main variable to summarize}
 
-\item{sub_vars}{A vector of subgroup variables.}
+\item{sub_vars}{A character vector of variable names to create subtables for}
 
-\item{stat_option}{The statistic display option: "single", "both", or "custom".}
+\item{stat_option}{String specifying the statistics to display: "single", "both", or "custom"}
 
-\item{custom_stat_cat}{Custom statistic for categorical variables.}
+\item{custom_stat_cat}{Custom statistic format for categorical variables (when stat_option = "custom")}
 
-\item{custom_stat_cont}{Custom statistic for continuous variables.}
+\item{custom_stat_cont}{Custom statistic format for continuous variables (when stat_option = "custom")}
 
-\item{digits}{Number of decimal places for the first statistic.}
+\item{digits}{Number of digits for primary statistics}
 
-\item{digits_2}{Number of decimal places for the second statistic.}
+\item{digits_2}{Number of digits for secondary statistics}
 
-\item{keep_footnotes}{Whether to keep footnotes in the output.}
+\item{keep_footnotes}{Logical; whether to keep footnotes in the final table}
 }
 \value{
-A formatted summary table.
+A gt table object
 }
 \description{
-This function generates a summary table using survey data, with optional subtables
-for subgroup analysis.
+This function creates a main summary table and multiple subtables based on the
+specified variables, and combines them into a single formatted table.
+}
+\examples{
+\dontrun{
+  library(survey)
+  data(api)
+  svy <- svydesign(id=~1, data=apiclus1)
+  fn_table(svy, main_var = stype, sub_vars = c("both", "awards"))
+}
 }

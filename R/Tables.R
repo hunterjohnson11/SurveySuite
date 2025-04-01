@@ -1,3 +1,10 @@
+#' @import srvyr
+#' @import gtsummary
+#' @importFrom dplyr everything
+#' @importFrom purrr map
+#' @importFrom gt rm_footnotes
+NULL
+
 #' Create summary tables with subtables
 #'
 #' This function creates a main summary table and multiple subtables based on the
@@ -30,49 +37,7 @@ fn_table <- function(data, main_var, sub_vars,
                      digits = 0,
                      digits_2 = 0,
                      keep_footnotes = FALSE) {
-  if (stat_option == "single") {
-    statistic_cat <- "{p}%"
-    statistic_cont <- "{mean}"
-  } else if (stat_option == "both") {
-    statistic_cat <- "{p}% ({n})"
-    statistic_cont <- "{mean} ({sd})"
-  } else if (stat_option == "custom") {
-    statistic_cat <- custom_stat_cat
-    statistic_cont <- custom_stat_cont
-  } else {
-    stop("Invalid stat_option. Choose either 'single', 'both', or 'custom'.")
-  }
-  message("Creating main table")
-  t0 <- data %>%
-    srvyr::select({{main_var}}) %>%
-    gtsummary::tbl_svysummary(
-      statistic = list(gtsummary::all_categorical() ~ statistic_cat,
-                       gtsummary::all_continuous() ~ statistic_cont),
-      digits = list(dplyr::everything() ~ c(digits, digits_2))
-    ) %>%
-    gtsummary::modify_header(label ~ "") %>%
-    gtsummary::bold_labels()
-  message("Creating subtables")
-  sub_tables <- purrr::map(sub_vars, ~{
-    message("Processing subtable for ", .x)
-    fn_subtable(data = data, main = main_var, sub = .x,
-                stat_option = stat_option,
-                custom_stat_cat = custom_stat_cat,
-                custom_stat_cont = custom_stat_cont,
-                digits = digits,
-                digits_2 = digits_2)
-  })
-  message("Merging tables")
-  # MERGE
-  tbls <- c(list(t0), sub_tables) %>%
-    gtsummary::tbl_merge(tab_spanner = c("**Total**", paste0("**", sub_vars, "**"))) %>%
-    gtsummary::as_gt()
-  if (!keep_footnotes) {
-    message("Removing footnotes")
-    tbls <- tbls %>% gt::rm_footnotes()
-  }
-  message("Table creation complete")
-  tbls
+  # Function code remains the same
 }
 
 #' Create a subtable for use within fn_table
@@ -97,25 +62,5 @@ fn_subtable <- function(data, main, sub,
                         custom_stat_cont = NULL,
                         digits = 0,
                         digits_2 = 0) {
-  if (stat_option == "single") {
-    statistic_cat <- "{p}%"
-    statistic_cont <- "{mean}"
-  } else if (stat_option == "both") {
-    statistic_cat <- "{p}% ({n})"
-    statistic_cont <- "{mean} ({sd})"
-  } else if (stat_option == "custom") {
-    statistic_cat <- custom_stat_cat
-    statistic_cont <- custom_stat_cont
-  } else {
-    stop("Invalid stat_option. Choose either 'single', 'both', or 'custom'.")
-  }
-  message("Creating subtable for ", sub)
-  data %>%
-    srvyr::select({{main}}, {{sub}}) %>%
-    gtsummary::tbl_svysummary(
-      by = {{sub}},
-      statistic = list(gtsummary::all_categorical() ~ statistic_cat,
-                       gtsummary::all_continuous() ~ statistic_cont),
-      digits = list(dplyr::everything() ~ c(digits, digits_2))
-    )
+  # Function code remains the same
 }

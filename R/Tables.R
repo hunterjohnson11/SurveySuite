@@ -1,33 +1,3 @@
-fn_subtable <- function(data, main, sub,
-                        stat_option = "both",
-                        custom_stat_cat = NULL,
-                        custom_stat_cont = NULL,
-                        digits = 0,
-                        digits_2 = 0) {
-
-  if (stat_option == "single") {
-    statistic_cat <- "{p}%"
-    statistic_cont <- "{mean}"
-  } else if (stat_option == "both") {
-    statistic_cat <- "{p}% ({n})"
-    statistic_cont <- "{mean} ({sd})"
-  } else if (stat_option == "custom") {
-    statistic_cat <- custom_stat_cat
-    statistic_cont <- custom_stat_cont
-  } else {
-    stop("Invalid stat_option. Choose either 'single', 'both', or 'custom'.")
-  }
-
-  data %>%
-    srvyr::select({{main}}, {{sub}}) %>%
-    gtsummary::tbl_svysummary(
-      by = {{sub}},
-      statistic = list(gtsummary::all_categorical() ~ statistic_cat,
-                       gtsummary::all_continuous() ~ statistic_cont),
-      digits = list(dplyr::everything() ~ c(digits, digits_2))
-    )
-}
-
 #' Create a Summary Table with Multiple Subtables
 #'
 #' This function generates a summary table using survey data, with optional subtables
@@ -44,6 +14,11 @@ fn_subtable <- function(data, main, sub,
 #' @param keep_footnotes Whether to keep footnotes in the output.
 #' @return A formatted summary table.
 #' @export
+#' @importFrom dplyr everything
+#' @importFrom gt rm_footnotes
+#' @importFrom gtsummary tbl_svysummary modify_header bold_labels tbl_merge as_gt all_categorical all_continuous
+#' @importFrom purrr map
+#' @importFrom srvyr select
 fn_table <- function(data, main_var, sub_vars,
                      stat_option = "both",
                      custom_stat_cat = NULL,

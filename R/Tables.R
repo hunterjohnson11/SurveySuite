@@ -1,8 +1,8 @@
 #' @import srvyr
 #' @import gtsummary
+#' @import gt
 #' @importFrom dplyr everything
 #' @importFrom purrr map
-#' @importFrom gt rm_footnotes
 NULL
 
 #' Create cross-tabulation summary tables

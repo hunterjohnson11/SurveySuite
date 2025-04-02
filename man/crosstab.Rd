@@ -19,15 +19,15 @@ crosstab(
 \arguments{
 \item{data}{A data frame or survey design object}
 
-\item{main_vars}{The main variable to summarize}
+\item{main_vars}{A character vector of variable names to include in the main table.}
 
 \item{sub_vars}{A character vector of variable names to create subtables for}
 
-\item{stat_option}{String specifying the statistics to display: "single", "both", or "custom"}
+\item{stat_option}{String specifying the statistics to display: "single", "both", or "custom". Default is both. Single will only show percentage for categorical variables and mean for continuous variables. Both will show percentage and n size for categorical variables and mean and standard deviation for continuous variables (with the latter variable in parentheses). Custom allows you to specify custom configurations as specified in the custom_stat_cat and custom_stat_cont parameters.}
 
-\item{custom_stat_cat}{Custom statistic format for categorical variables (when stat_option = "custom")}
+\item{custom_stat_cat}{Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_summary.}
 
-\item{custom_stat_cont}{Custom statistic format for continuous variables (when stat_option = "custom")}
+\item{custom_stat_cont}{Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_summary.}
 
 \item{digits}{Number of digits for primary statistics}
 

@@ -17,8 +17,8 @@ NULL
 #' @param stat_option String specifying the statistics to display: "single", "both", or "custom". Default is both. Single will only show percentage for categorical variables and mean for continuous variables. Both will show percentage and n size for categorical variables and mean and standard deviation for continuous variables (with the latter variable in parentheses). Custom allows you to specify custom configurations as specified in the custom_stat_cat and custom_stat_cont parameters.
 #' @param custom_stat_cat Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_svysummary.
 #' @param custom_stat_cont Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_svysummary.
-#' @param digits Number of digits for primary statistics
-#' @param digits_2 Number of digits for secondary statistics
+#' @param main_digits Number of digits for primary statistics
+#' @param sub_digits Number of digits for secondary statistics
 #' @param keep_footnotes Logical; whether to keep footnotes in the final table
 #'
 #' @return A gt table object
@@ -35,12 +35,12 @@ srvy_crosstab <- function(data, main_vars, sub_vars,
                           stat_option = "both",
                           custom_stat_cat = NULL,
                           custom_stat_cont = NULL,
-                          digits = 0,
-                          digits_2 = 0,
+                          main_digits = 0,
+                          sub_digits = 0,
                           keep_footnotes = FALSE) {
 
   # Define subtable function inside crosstab but without default parameters
-  subtable <- function(data, main, sub, stat_option, custom_stat_cat, custom_stat_cont, digits, digits_2) {
+  subtable <- function(data, main, sub, stat_option, custom_stat_cat, custom_stat_cont, main_digits, sub_digits) {
     if (stat_option == "single") {
       statistic_cat <- "{p}%"
       statistic_cont <- "{mean}"
@@ -60,7 +60,7 @@ srvy_crosstab <- function(data, main_vars, sub_vars,
         by = {{sub}},
         statistic = list(gtsummary::all_categorical() ~ statistic_cat,
                          gtsummary::all_continuous() ~ statistic_cont),
-        digits = list(dplyr::everything() ~ c(digits, digits_2))
+        digits = list(dplyr::everything() ~ c(main_digits, sub_digits))
       )
   }
 
@@ -83,7 +83,7 @@ srvy_crosstab <- function(data, main_vars, sub_vars,
     gtsummary::tbl_svysummary(
       statistic = list(gtsummary::all_categorical() ~ statistic_cat,
                        gtsummary::all_continuous() ~ statistic_cont),
-      digits = list(dplyr::everything() ~ c(digits, digits_2))
+      digits = list(dplyr::everything() ~ c(main_digits, sub_digits))
     ) %>%
     gtsummary::modify_header(label ~ "") %>%
     gtsummary::bold_labels()
@@ -98,8 +98,8 @@ srvy_crosstab <- function(data, main_vars, sub_vars,
       stat_option = stat_option,
       custom_stat_cat = custom_stat_cat,
       custom_stat_cont = custom_stat_cont,
-      digits = digits,
-      digits_2 = digits_2
+      main_digits = main_digits,
+      sub_digits = sub_digits
     )
   })
   message("Merging tables")
@@ -127,8 +127,8 @@ srvy_crosstab <- function(data, main_vars, sub_vars,
 #' @param stat_option String specifying the statistics to display: "single", "both", or "custom". Default is both. Single will only show percentage for categorical variables and mean for continuous variables. Both will show percentage and n size for categorical variables and mean and standard deviation for continuous variables (with the latter variable in parentheses). Custom allows you to specify custom configurations as specified in the custom_stat_cat and custom_stat_cont parameters.
 #' @param custom_stat_cat Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_summary.
 #' @param custom_stat_cont Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_summary.
-#' @param digits Number of digits for primary statistics
-#' @param digits_2 Number of digits for secondary statistics
+#' @param main_digits Number of digits for primary statistics
+#' @param sub_digits Number of digits for secondary statistics
 #' @param keep_footnotes Logical; whether to keep footnotes in the final table
 #'
 #' @return A gt table object
@@ -144,12 +144,12 @@ crosstab <- function(data, main_vars, sub_vars,
                      stat_option = "both",
                      custom_stat_cat = NULL,
                      custom_stat_cont = NULL,
-                     digits = 0,
-                     digits_2 = 0,
+                     main_digits = 0,
+                     sub_digits = 0,
                      keep_footnotes = FALSE) {
 
   # Define subtable function inside crosstab but without default parameters
-  subtable <- function(data, main, sub, stat_option, custom_stat_cat, custom_stat_cont, digits, digits_2) {
+  subtable <- function(data, main, sub, stat_option, custom_stat_cat, custom_stat_cont, main_digits, sub_digits) {
     if (stat_option == "single") {
       statistic_cat <- "{p}%"
       statistic_cont <- "{mean}"
@@ -169,7 +169,7 @@ crosstab <- function(data, main_vars, sub_vars,
         by = {{sub}},
         statistic = list(gtsummary::all_categorical() ~ statistic_cat,
                          gtsummary::all_continuous() ~ statistic_cont),
-        digits = list(dplyr::everything() ~ c(digits, digits_2))
+        digits = list(dplyr::everything() ~ c(main_digits, sub_digits))
       )
   }
 
@@ -192,7 +192,7 @@ crosstab <- function(data, main_vars, sub_vars,
     gtsummary::tbl_summary(
       statistic = list(gtsummary::all_categorical() ~ statistic_cat,
                        gtsummary::all_continuous() ~ statistic_cont),
-      digits = list(dplyr::everything() ~ c(digits, digits_2))
+      digits = list(dplyr::everything() ~ c(main_digits, sub_digits))
     ) %>%
     gtsummary::modify_header(label ~ "") %>%
     gtsummary::bold_labels()
@@ -207,8 +207,8 @@ crosstab <- function(data, main_vars, sub_vars,
       stat_option = stat_option,
       custom_stat_cat = custom_stat_cat,
       custom_stat_cont = custom_stat_cont,
-      digits = digits,
-      digits_2 = digits_2
+      main_digits = main_digits,
+      sub_digits = sub_digits
     )
   })
   message("Merging tables")

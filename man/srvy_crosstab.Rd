@@ -11,8 +11,8 @@ srvy_crosstab(
   stat_option = "both",
   custom_stat_cat = NULL,
   custom_stat_cont = NULL,
-  digits = 0,
-  digits_2 = 0,
+  main_digits = 0,
+  sub_digits = 0,
   keep_footnotes = FALSE
 )
 }
@@ -29,9 +29,9 @@ srvy_crosstab(
 
 \item{custom_stat_cont}{Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_svysummary.}
 
-\item{digits}{Number of digits for primary statistics}
+\item{main_digits}{Number of digits for primary statistics}
 
-\item{digits_2}{Number of digits for secondary statistics}
+\item{sub_digits}{Number of digits for secondary statistics}
 
 \item{keep_footnotes}{Logical; whether to keep footnotes in the final table}
 }

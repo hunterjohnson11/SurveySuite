@@ -1,7 +1,7 @@
 Package: Rsurveytools
 Type: Package
 Title: Make Crosstabs with Multiple X and Y Variables
-Version: 0.1.0
+Version: 0.2.0
 Author: Hunter Johnson
 Maintainer: Hunter Johnson <hunterdanj@hotmail.com>
 Description: Based on some code I spent a lot of time digging up, I wanted an easy way to make a crosstab of a survey that could compare multiple demographic variables with multiple survey questions.

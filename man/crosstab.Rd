@@ -6,7 +6,7 @@
 \usage{
 crosstab(
   data,
-  main_var,
+  main_vars,
   sub_vars,
   stat_option = "both",
   custom_stat_cat = NULL,
@@ -19,7 +19,7 @@ crosstab(
 \arguments{
 \item{data}{A data frame or survey design object}
 
-\item{main_var}{The main variable to summarize}
+\item{main_vars}{The main variable to summarize}
 
 \item{sub_vars}{A character vector of variable names to create subtables for}
 
@@ -44,9 +44,9 @@ specified variables, and combines them into a single formatted cross-tabulation.
 }
 \examples{
 \dontrun{
-  library(survey)
-  data(api)
-  svy <- svydesign(id=~1, data=apiclus1)
-  crosstab(svy, main_var = stype, sub_vars = c("both", "awards"))
+  library(Rsurveytools)
+  data <- data
+  svy <- svydesign(data = data, id=~1, weight = wts)
+  crosstab(svy, main_vars = c("q1". "q2", "q3"), sub_vars = c("educ", "ideo5"))
 }
 }

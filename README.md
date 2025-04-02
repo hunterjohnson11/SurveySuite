@@ -20,6 +20,14 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(Rsurveytools)
+library(tidyverse)
 ## basic example code
+
+cols <- c("q1", "q2", "q3")
+sub_vars <- c("rel", "partyid", "ideo5")
+
+table <- survey %>% crosstab(cols, sub_vars)
+table #For viewing table in view pane. 
+gtsave(table, "surveytable.html") #For exporting table. 
 ```
 

@@ -11,7 +11,7 @@ NULL
 #' specified variables, and combines them into a single formatted cross-tabulation.
 #'
 #' @param data A data frame or survey design object
-#' @param main_var The main variable to summarize
+#' @param main_vars The main variable to summarize
 #' @param sub_vars A character vector of variable names to create subtables for
 #' @param stat_option String specifying the statistics to display: "single", "both", or "custom"
 #' @param custom_stat_cat Custom statistic format for categorical variables (when stat_option = "custom")
@@ -28,9 +28,9 @@ NULL
 #'   library(Rsurveytools)
 #'   data <- data
 #'   svy <- svydesign(data = data, id=~1, weight = wts)
-#'   crosstab(svy, main_var = c("q1". "q2", "q3"), sub_vars = c("educ", "ideo5"))
+#'   crosstab(svy, main_vars = c("q1". "q2", "q3"), sub_vars = c("educ", "ideo5"))
 #' }
-crosstab <- function(data, main_var, sub_vars,
+crosstab <- function(data, main_vars, sub_vars,
                      stat_option = "both",
                      custom_stat_cat = NULL,
                      custom_stat_cont = NULL,
@@ -78,7 +78,7 @@ crosstab <- function(data, main_var, sub_vars,
   }
   message("Creating main table")
   t0 <- data %>%
-    srvyr::select({{main_var}}) %>%
+    srvyr::select({{main_vars}}) %>%
     gtsummary::tbl_svysummary(
       statistic = list(gtsummary::all_categorical() ~ statistic_cat,
                        gtsummary::all_continuous() ~ statistic_cont),
@@ -92,7 +92,7 @@ crosstab <- function(data, main_var, sub_vars,
     # Pass all parameters explicitly
     subtable(
       data = data,
-      main = main_var,
+      main = main_vars,
       sub = .x,
       stat_option = stat_option,
       custom_stat_cat = custom_stat_cat,

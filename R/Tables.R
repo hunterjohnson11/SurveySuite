@@ -1,7 +1,7 @@
 #' @import srvyr
 #' @import gtsummary
 #' @import gt
-#' @importFrom dplyr everything
+#' @import tidyverse
 #' @importFrom purrr map
 NULL
 

@@ -25,10 +25,10 @@ NULL
 #'
 #' @examples
 #' \dontrun{
-#'   library(survey)
-#'   data(api)
-#'   svy <- svydesign(id=~1, data=apiclus1)
-#'   crosstab(svy, main_var = stype, sub_vars = c("both", "awards"))
+#'   library(Rsurveytools)
+#'   data <- data
+#'   svy <- svydesign(data = data, id=~1, weight = wts)
+#'   crosstab(svy, main_var = c("q1". "q2", "q3"), sub_vars = c("educ", "ideo5"))
 #' }
 crosstab <- function(data, main_var, sub_vars,
                      stat_option = "both",

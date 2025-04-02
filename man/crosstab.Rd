@@ -25,9 +25,9 @@ crosstab(
 
 \item{stat_option}{String specifying the statistics to display: "single", "both", or "custom". Default is both. Single will only show percentage for categorical variables and mean for continuous variables. Both will show percentage and n size for categorical variables and mean and standard deviation for continuous variables (with the latter variable in parentheses). Custom allows you to specify custom configurations as specified in the custom_stat_cat and custom_stat_cont parameters.}
 
-\item{custom_stat_cat}{Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_summary.}
+\item{custom_stat_cat}{Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_summary and tbl_svysummary.}
 
-\item{custom_stat_cont}{Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_summary.}
+\item{custom_stat_cont}{Only used when stat_option = "custom". The options follow those available under the "statistic" argument in gtsummary's tbl_summary and tbl_svysummary.}
 
 \item{digits}{Number of digits for primary statistics}
 

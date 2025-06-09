@@ -1,7 +1,7 @@
-Package: Rsurveytools
+Package: SurveySuite
 Type: Package
 Title: Make Crosstabs with Multiple X and Y Variables
-Version: 0.2.0
+Version: 0.2.1
 Author: Hunter Johnson
 Maintainer: Hunter Johnson <hunterdanj@hotmail.com>
 Description: Based on some code I spent a lot of time digging up, I wanted an easy way to make a crosstab of a survey that could compare multiple demographic variables with multiple survey questions.
@@ -11,8 +11,8 @@ LazyData: true
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/hunterjohnson11/Rsurveytools
-BugReports: https://github.com/hunterjohnson11/Rsurveytools/issues
+URL: https://github.com/hunterjohnson11/SurveySuite
+BugReports: https://github.com/hunterjohnson11/SurveySuite/issues
 Imports: 
     dplyr,
     gt,

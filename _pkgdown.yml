@@ -1,0 +1,10 @@
+url: https://hunterjohnson11.github.io/SurveySuite/
+
+navbar:
+  structure:
+    left: [home, articles, reference, news]
+    right: [github]
+
+  components:
+    home: { text: "Home", href: index.html }
+    github: { icon: fa-github, href: https://github.com/hunterjohnson11/SurveySuite/ }

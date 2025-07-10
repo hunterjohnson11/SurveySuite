@@ -69,24 +69,24 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="rsurveytools">Rsurveytools<a class="anchor" aria-label="anchor" href="#rsurveytools"></a>
+<div class="page-header"><h1 id="surveysuite">SurveySuite<a class="anchor" aria-label="anchor" href="#surveysuite"></a>
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The purpose of Rsurveytools is to add a crosstab function that can make a table for multiple survey and demographic questions at the same time. It comes from the helpful code in this <a href="https://stackoverflow.com/questions/71632242/create-multiple-cross-tables-with-one-line-code-function-with-gtsummary" class="external-link">Stack Overflow thread</a> with additional functionality added.</p>
+<p>The original purpose of SurveySuite was to add a crosstab function that can make a table for multiple survey and demographic questions at the same time. It comes from the helpful code in this <a href="https://stackoverflow.com/questions/71632242/create-multiple-cross-tables-with-one-line-code-function-with-gtsummary" class="external-link">Stack Overflow thread</a> with additional functionality added.I plan to expand this package to include more functions related to survey research that I use in my work.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install Rsurveytools using the remotes package.</p>
+<p>You can install SurveySuite using the remotes package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hunterjohnson11/Rsurveytools"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hunterjohnson11/SurveySuite"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>This is a basic example that shows how to use the crosstab function to create a table with multiple survey questions and demographic variables.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">Rsurveytools</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hunterjohnson11/SurveySuite" class="external-link">SurveySuite</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="co">## basic example code</span></span>
 <span></span>
@@ -128,7 +128,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Hunter Johnson <br><small class="roles"> Maintainer </small>   </li>
+<li>Hunter Johnson <br><small class="roles"> Maintainer </small>  </li>
 </ul>
 </div>
 
@@ -145,7 +145,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>

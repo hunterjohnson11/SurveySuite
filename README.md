@@ -16,18 +16,24 @@ remotes::install_github("hunterjohnson11/SurveySuite")
 
 ## Example
 
-This is a basic example that shows how to use the crosstab function to create a table with multiple survey questions and demographic variables. 
+This is a basic example that shows how to use `crosstab()` to create a table
+with multiple survey questions and demographic variables. `crosstab()` returns
+a gtsummary object; convert it with `gtsummary::as_gt()` if you want to export
+it with `gt::gtsave()`.
 
 ``` r
 library(SurveySuite)
-library(tidyverse)
-## basic example code
 
-cols <- c("q1", "q2", "q3")
-sub_vars <- c("rel", "partyid", "ideo5")
+main_vars <- c("CC24_301", "CC24_302", "CC24_303")
+sub_vars <- c("gender4", "educ", "race")
 
-table <- survey %>% crosstab(cols, sub_vars)
-table #For viewing table in view pane. 
-gtsave(table, "surveytable.html") #For exporting table. 
+# Unweighted
+table <- crosstab(CES24_sample, main_vars, sub_vars)
+table # For viewing the table in the view pane.
+
+# Weighted -- pass a weight column name, no need to pre-build an srvyr object
+weighted_table <- crosstab(CES24_sample, main_vars, sub_vars, weight = "commonweight")
+
+gtsummary::as_gt(table) |> gt::gtsave("surveytable.html") # For exporting.
 ```
 

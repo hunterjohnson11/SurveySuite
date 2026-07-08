@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(Rsurveytools)
+library(SurveySuite)
 
-test_check("Rsurveytools")
+test_check("SurveySuite")

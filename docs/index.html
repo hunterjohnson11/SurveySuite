@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">SurveySuite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -84,18 +84,21 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example that shows how to use the crosstab function to create a table with multiple survey questions and demographic variables.</p>
+<p>This is a basic example that shows how to use <code><a href="reference/crosstab.html">crosstab()</a></code> to create a table with multiple survey questions and demographic variables. <code><a href="reference/crosstab.html">crosstab()</a></code> returns a gtsummary object; convert it with <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_gt.html" class="external-link">gtsummary::as_gt()</a></code> if you want to export it with <code><a href="https://gt.rstudio.com/reference/gtsave.html" class="external-link">gt::gtsave()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hunterjohnson11/SurveySuite" class="external-link">SurveySuite</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span>
 <span></span>
-<span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q1"</span>, <span class="st">"q2"</span>, <span class="st">"q3"</span><span class="op">)</span></span>
-<span><span class="va">sub_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rel"</span>, <span class="st">"partyid"</span>, <span class="st">"ideo5"</span><span class="op">)</span></span>
+<span><span class="va">main_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CC24_301"</span>, <span class="st">"CC24_302"</span>, <span class="st">"CC24_303"</span><span class="op">)</span></span>
+<span><span class="va">sub_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender4"</span>, <span class="st">"educ"</span>, <span class="st">"race"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">table</span> <span class="op">&lt;-</span> <span class="va">survey</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="reference/crosstab.html">crosstab</a></span><span class="op">(</span><span class="va">cols</span>, <span class="va">sub_vars</span><span class="op">)</span></span>
-<span><span class="va">table</span> <span class="co">#For viewing table in view pane. </span></span>
-<span><span class="fu">gtsave</span><span class="op">(</span><span class="va">table</span>, <span class="st">"surveytable.html"</span><span class="op">)</span> <span class="co">#For exporting table. </span></span></code></pre></div>
+<span><span class="co"># Unweighted</span></span>
+<span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/crosstab.html">crosstab</a></span><span class="op">(</span><span class="va">CES24_sample</span>, <span class="va">main_vars</span>, <span class="va">sub_vars</span><span class="op">)</span></span>
+<span><span class="va">table</span> <span class="co"># For viewing the table in the view pane.</span></span>
+<span></span>
+<span><span class="co"># Weighted -- pass a weight column name, no need to pre-build an srvyr object</span></span>
+<span><span class="va">weighted_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/crosstab.html">crosstab</a></span><span class="op">(</span><span class="va">CES24_sample</span>, <span class="va">main_vars</span>, <span class="va">sub_vars</span>, weight <span class="op">=</span> <span class="st">"commonweight"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">gtsummary</span><span class="fu">::</span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_gt.html" class="external-link">as_gt</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gtsave.html" class="external-link">gtsave</a></span><span class="op">(</span><span class="st">"surveytable.html"</span><span class="op">)</span> <span class="co"># For exporting.</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -128,7 +131,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Hunter Johnson <br><small class="roles"> Maintainer </small>  </li>
+<li>Hunter Johnson <br><small class="roles"> Maintainer </small>   </li>
 </ul>
 </div>
 
@@ -145,7 +148,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>

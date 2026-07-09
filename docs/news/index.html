@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SurveySuite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -58,7 +58,7 @@
 <h2 class="page-header" data-toc-text="0.2.0" id="surveysuite-020">SurveySuite 0.2.0<a class="anchor" aria-label="anchor" href="#surveysuite-020"></a></h2>
 <div class="section level3">
 <h3 id="new-features-0-2-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h3>
-<ul><li>Renamed original <code><a href="../reference/crosstab.html">crosstab()</a></code> function to <code><a href="../reference/srvy_crosstab.html">srvy_crosstab()</a></code> for survey objects</li>
+<ul><li>Renamed original <code><a href="../reference/crosstab.html">crosstab()</a></code> function to <code>srvy_crosstab()</code> for survey objects</li>
 <li>Added new <code><a href="../reference/crosstab.html">crosstab()</a></code> function for standard data frames</li>
 </ul></div>
 </div>
@@ -66,6 +66,28 @@
 <h2 class="page-header" data-toc-text="0.2.1" id="surveysuite-021">SurveySuite 0.2.1<a class="anchor" aria-label="anchor" href="#surveysuite-021"></a></h2>
 <ul><li>Renamed package and moved to pkgdown</li>
 </ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.3.0" id="surveysuite-030">SurveySuite 0.3.0<a class="anchor" aria-label="anchor" href="#surveysuite-030"></a></h2>
+<div class="section level3">
+<h3 id="breaking-changes-0-3-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-3-0"></a></h3>
+<ul><li>
+<code>srvy_crosstab()</code> has been removed. <code><a href="../reference/crosstab.html">crosstab()</a></code> now handles both weighted and unweighted data: pass a <code>weight</code> column name (plus optional <code>strata</code>, <code>ids</code>, <code>fpc</code>) to build a weighted survey design internally, or omit it for a plain unweighted summary. There is no need to pre-build an <code>srvyr</code> design object anymore.</li>
+<li>
+<code><a href="../reference/crosstab.html">crosstab()</a></code> now returns a gtsummary object (via <code>modify_footnote()</code>) instead of a <code>gt</code> object (previously produced via <code>as_gt()</code> + <code><a href="https://gt.rstudio.com/reference/rm_footnotes.html" class="external-link">gt::rm_footnotes()</a></code>). Convert with <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_gt.html" class="external-link">gtsummary::as_gt()</a></code> if you need a <code>gt</code> object, e.g. for <code><a href="https://gt.rstudio.com/reference/gtsave.html" class="external-link">gt::gtsave()</a></code>.</li>
+<li>The <code>keep_footnotes</code> argument has been removed.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-0-3-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-0"></a></h3>
+<ul><li>
+<code><a href="../reference/crosstab.html">crosstab()</a></code> now collapses Y2-style multiselect variable groups (columns prefixed <code>M_</code> sharing a stem, e.g. <code>M_TOPIC_r1</code>/<code>M_TOPIC_r2</code>): a single label row is kept, “NO TO …” and missing rows are dropped, and levels are sorted by descending percentage. Controlled via the new <code>multiselect_stem</code> argument.</li>
+<li>Added a bundled sample dataset, <code>CES24_sample</code>, for examples and tests.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="internal-0-3-0">Internal<a class="anchor" aria-label="anchor" href="#internal-0-3-0"></a></h3>
+<ul><li>Rewrote the package internals using the base R pipe (<code>|&gt;</code>) and fully namespaced calls; dropped the <code>@import tidyverse</code>/<code>@import gt</code> blanket imports in favor of explicit <code>Imports:</code> (<code>dplyr</code>, <code>gtsummary</code>, <code>purrr</code>, <code>srvyr</code>, <code>stringr</code>).</li>
+<li>Added a full testthat 3 test suite.</li>
+</ul></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -80,7 +102,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>

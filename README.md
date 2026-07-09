@@ -8,10 +8,10 @@ The original purpose of SurveySuite was to add a crosstab function that can make
 
 ## Installation
 
-You can install SurveySuite using the remotes package. 
+You can install SurveySuite using the pak package. 
 
 ``` r
-remotes::install_github("hunterjohnson11/SurveySuite")
+pak::pak("hunterjohnson11/SurveySuite")
 ```
 
 ## Example
